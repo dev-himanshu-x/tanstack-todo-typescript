@@ -90,28 +90,28 @@ function App() {
   return (
     <div className={`min-h-screen flex flex-col ${bg} transition-colors duration-300`}>
       {/* Top nav bar */}
-      <nav className={`${navBg} backdrop-blur-md sticky top-0 z-50 border-b px-5 md:px-8 h-14 flex items-center gap-4 transition-colors duration-300`}>
+      <nav className={`${navBg} backdrop-blur-md sticky top-0 z-50 border-b px-3 sm:px-5 md:px-8 h-14 flex items-center gap-2 sm:gap-4 transition-colors duration-300`}>
         {/* Left: Logo + name */}
-        <div className="flex items-center gap-2.5 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6c63ff] to-[#5a4fff] flex items-center justify-center shadow-md shadow-[#6c63ff]/25">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M21 12V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <span className={`font-semibold text-[15px] tracking-tight ${dark ? "text-white" : "text-gray-900"}`}>Taskify</span>
+          <span className={`font-semibold text-[15px] tracking-tight hidden sm:inline ${dark ? "text-white" : "text-gray-900"}`}>Taskify</span>
         </div>
 
         {/* Center: Add task input */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className={`flex items-center rounded-full px-4 py-2 gap-2 w-80 border ${dark ? "bg-[#252545] border-[#333]" : "bg-gray-50/80 border-gray-200"} transition-colors duration-300 focus-within:ring-2 focus-within:ring-[#6c63ff]/30 focus-within:border-[#6c63ff]/50`}>
+        <div className="flex-1 flex items-center justify-center min-w-0">
+          <div className={`flex items-center rounded-full px-3 sm:px-4 py-2 gap-2 w-full max-w-sm border ${dark ? "bg-[#252545] border-[#333]" : "bg-gray-50/80 border-gray-200"} transition-colors duration-300 focus-within:ring-2 focus-within:ring-[#6c63ff]/30 focus-within:border-[#6c63ff]/50`}>
             <input
               type="text"
               placeholder="Add a new task..."
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addTodo()}
-              className={`border-none outline-none bg-transparent flex-1 text-sm ${dark ? "text-gray-200 placeholder-gray-500" : "text-gray-800 placeholder-gray-400"}`}
+              className={`border-none outline-none bg-transparent flex-1 text-sm min-w-0 ${dark ? "text-gray-200 placeholder-gray-500" : "text-gray-800 placeholder-gray-400"}`}
             />
             <button
               onClick={addTodo}
@@ -136,13 +136,13 @@ function App() {
       </nav>
 
       {/* Toolbar: Filter + Stats + Search */}
-      <div className="px-5 md:px-8 pt-4 pb-3 flex items-center gap-3">
+      <div className="px-3 sm:px-5 md:px-8 pt-4 pb-3 flex flex-wrap items-center gap-2 sm:gap-3">
         <div className={`flex rounded-full p-0.5 ${dark ? "bg-[#1a1a2e]" : "bg-gray-100/80"} transition-colors duration-300`}>
           {(["ALL", "ACTIVE", "DONE"] as FilterMode[]).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold border-none cursor-pointer transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-full text-xs font-semibold border-none cursor-pointer transition-all ${
                 filter === f
                   ? "bg-[#6c63ff] text-white shadow-sm shadow-[#6c63ff]/25"
                   : dark
@@ -166,7 +166,7 @@ function App() {
         <div className="flex-1" />
 
         {/* Search */}
-        <div className={`flex items-center rounded-full px-3 py-1.5 gap-2 w-44 border ${inputBg} transition-colors duration-300 focus-within:ring-2 focus-within:ring-[#6c63ff]/20 focus-within:border-[#6c63ff]/40`}>
+        <div className={`flex items-center rounded-full px-3 py-1.5 gap-2 w-full sm:w-44 border ${inputBg} transition-colors duration-300 focus-within:ring-2 focus-within:ring-[#6c63ff]/20 focus-within:border-[#6c63ff]/40 order-last sm:order-none mt-1 sm:mt-0`}>
           <SearchOutlined className="text-gray-400" style={{ fontSize: 12 }} />
           <input
             type="text"
@@ -179,14 +179,14 @@ function App() {
       </div>
 
       {/* Todo list */}
-      <div className="px-5 md:px-8 pb-6 flex-1 flex flex-col">
-        <div className={`${cardBg} rounded-2xl border flex-1 ${dark ? "border-[#2a2a4a] shadow-lg shadow-black/20" : "border-gray-100 shadow-sm"} transition-colors duration-300 overflow-hidden`}>
+      <div className="px-3 sm:px-5 md:px-8 pb-6 flex-1 flex flex-col">
+        <div className={`${cardBg} rounded-xl sm:rounded-2xl border flex-1 ${dark ? "border-[#2a2a4a] shadow-lg shadow-black/20" : "border-gray-100 shadow-sm"} transition-colors duration-300 overflow-hidden`}>
           {filtered.map(({ text, index }, i) => {
             const checked = checkedList.includes(index);
             return (
               <div
                 key={index}
-                className={`flex items-center gap-3 py-4 px-6 group transition-colors ${
+                className={`flex items-center gap-2 sm:gap-3 py-3 sm:py-4 px-3 sm:px-6 group transition-colors ${
                   dark ? "hover:bg-[#1f1f3a]" : "hover:bg-gray-50/60"
                 } ${
                   i < filtered.length - 1 ? `border-b ${itemBorder}` : ""
@@ -219,7 +219,7 @@ function App() {
                       onChange={(e) => setEditText(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && saveEdit(index)}
                       autoFocus
-                      className={`flex-1 text-[13px] border-none outline-none rounded px-1 py-0.5 ${dark ? "bg-[#252545] text-gray-200" : "bg-gray-100 text-gray-700"}`}
+                      className={`flex-1 text-[13px] border-none outline-none rounded px-1 py-0.5 min-w-0 ${dark ? "bg-[#252545] text-gray-200" : "bg-gray-100 text-gray-700"}`}
                     />
                   ) : (
                     <span className={`text-[13px] transition-all ${
@@ -231,22 +231,21 @@ function App() {
                     </span>
                   )}
                 </label>
-                <div className="flex items-center gap-0.5">
+                <div className="flex items-center gap-0.5 flex-shrink-0">
                   {editingIndex === index ? (
                     <button
                       onClick={() => saveEdit(index)}
-                      className={`opacity-0 group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
-                        dark ? "text-gray-600 hover:text-green-400 hover:bg-green-400/10" : "text-gray-300 hover:text-green-500 hover:bg-green-50"
+                      className={`sm:opacity-0 sm:group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
+                        dark ? "text-gray-500 hover:text-green-400 hover:bg-green-400/10" : "text-gray-400 hover:text-green-500 hover:bg-green-50"
                       }`}
-                      style={{ opacity: 1 }}
                     >
                       <CheckOutlined style={{ fontSize: 13 }} />
                     </button>
                   ) : (
                     <button
                       onClick={() => startEdit(index, text)}
-                      className={`opacity-0 group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
-                        dark ? "text-gray-600 hover:text-[#6c63ff] hover:bg-[#6c63ff]/10" : "text-gray-300 hover:text-[#6c63ff] hover:bg-[#6c63ff]/10"
+                      className={`sm:opacity-0 sm:group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
+                        dark ? "text-gray-500 hover:text-[#6c63ff] hover:bg-[#6c63ff]/10" : "text-gray-400 hover:text-[#6c63ff] hover:bg-[#6c63ff]/10"
                       }`}
                     >
                       <EditOutlined style={{ fontSize: 13 }} />
@@ -254,8 +253,8 @@ function App() {
                   )}
                   <button
                     onClick={() => del(index)}
-                    className={`opacity-0 group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
-                      dark ? "text-gray-600 hover:text-red-400 hover:bg-red-400/10" : "text-gray-300 hover:text-red-400 hover:bg-red-50"
+                    className={`sm:opacity-0 sm:group-hover:opacity-100 transition-all bg-transparent border-none cursor-pointer p-1.5 rounded-lg ${
+                      dark ? "text-gray-500 hover:text-red-400 hover:bg-red-400/10" : "text-gray-400 hover:text-red-400 hover:bg-red-50"
                     }`}
                   >
                     <DeleteOutlined style={{ fontSize: 13 }} />
@@ -266,14 +265,14 @@ function App() {
           })}
 
           {filtered.length === 0 && todos.length > 0 && (
-            <div className="flex flex-col items-center justify-center py-20 gap-2">
+            <div className="flex flex-col items-center justify-center py-12 sm:py-20 gap-2">
               <SearchOutlined className="text-gray-300" style={{ fontSize: 32 }} />
               <p className="text-gray-400 text-sm">No matching tasks</p>
             </div>
           )}
 
           {todos.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-20 gap-3">
+            <div className="flex flex-col items-center justify-center py-12 sm:py-20 gap-3">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6c63ff]/10 to-[#6c63ff]/5 flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                   <path d="M9 11L12 14L22 4" stroke="#6c63ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
