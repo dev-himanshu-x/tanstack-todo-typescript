@@ -91,17 +91,6 @@ function App() {
     <div className={`min-h-screen flex flex-col ${bg} transition-colors duration-300`}>
       {/* Top nav bar */}
       <nav className={`${navBg} backdrop-blur-md sticky top-0 z-50 border-b px-3 sm:px-5 md:px-8 h-14 flex items-center gap-2 sm:gap-4 transition-colors duration-300`}>
-        {/* Left: Logo + name */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6c63ff] to-[#5a4fff] flex items-center justify-center shadow-md shadow-[#6c63ff]/25">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M9 11L12 14L22 4" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M21 12V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V5C3 3.9 3.9 3 5 3H16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className={`font-semibold text-[15px] tracking-tight hidden sm:inline ${dark ? "text-white" : "text-gray-900"}`}>Taskify</span>
-        </div>
-
         {/* Center: Add task input */}
         <div className="flex-1 flex items-center justify-center min-w-0">
           <div className={`flex items-center rounded-full px-3 sm:px-4 py-2 gap-2 w-full max-w-sm border ${dark ? "bg-[#252545] border-[#333]" : "bg-gray-50/80 border-gray-200"} transition-colors duration-300 focus-within:ring-2 focus-within:ring-[#6c63ff]/30 focus-within:border-[#6c63ff]/50`}>

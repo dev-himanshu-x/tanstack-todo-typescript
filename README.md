@@ -1,4 +1,4 @@
-# ✅ Taskify
+# ✅ TanTask
 
 A clean, modern todo app built with **TanStack Start**, **React 19**, and **Tailwind CSS**. Features dark mode, inline editing, filtering, and browser-based persistence.
 
@@ -41,8 +41,8 @@ A clean, modern todo app built with **TanStack Start**, **React 19**, and **Tail
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/taskify.git
-cd taskify
+git clone https://github.com/your-username/TanTask.git
+cd TanTask
 
 # Install dependencies
 bun install
